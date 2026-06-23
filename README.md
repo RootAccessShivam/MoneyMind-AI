@@ -1,4 +1,6 @@
-# AI Financial Advisor Web Application
+# 🧠 MoneyMind AI
+
+### AI-powered Personal Finance & Wealth Assistant
 
 A web-based AI Financial Advisor built using Flask that helps users analyze their income, expenses, and savings.
 
