@@ -2,12 +2,12 @@
   <img src="logo.png" width="180">
 </p>
 
-<h1 align="center">🧠 MoneyMind AI</h1>
+<h1 align="center"> MoneyMind AI</h1>
 
 <p align="center">
 AI-powered Personal Finance & Wealth Assistant
 </p>
-# 🧠 MoneyMind AI
+#  MoneyMind AI
 
 ### AI-powered Personal Finance & Wealth Assistant
 
