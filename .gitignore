@@ -1,0 +1,5 @@
+.env
+finance.db
+__pycache__/
+*.pyc
+Financial_Report.pdf
