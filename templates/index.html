@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>MoneyMind AI</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+
+<style>
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:#f4f6f8;
+    margin:0;
+    padding:30px;
+    min-height:100vh;
+    position:relative;
+}
+
+.container{
+max-width:1500px !important;
+width:100%;
+margin:auto;
+padding:20px;
+position:relative;
+z-index:1;
+}
+
+.card{
+border:none;
+border-radius:20px;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+input{
+width:90%;
+padding:10px;
+margin:10px;
+border-radius:5px;
+border:1px solid gray;
+}
+
+button{
+padding:10px 20px;
+background:#4CAF50;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#45a049;
+}
+
+#particles-js{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+   background: linear-gradient(
+  135deg,
+ #0f172a,
+ #1e293b,
+ #334155
+  );
+}
+
+#chatbotButton{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+    135deg,
+    #2563eb,
+    #1d4ed8
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+    z-index:9999;
+
+    box-shadow:
+    0 0 20px rgba(37,99,235,.5);
+
+    animation:robotPulse 2s infinite;
+}
+#chatbotButton:hover{
+    transform:scale(1.08);
+}
+
+@keyframes robotPulse{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.08);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+#chatbotWindow{
+
+position:fixed;
+
+bottom:110px;
+right:25px;
+
+width:380px;
+height:450px;
+
+background:white;
+
+border-radius:25px;
+
+overflow:hidden;
+
+display:none;
+
+flex-direction:column;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.2);
+
+z-index:9999;
+}
+
+.chat-header{
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+
+    color:white;
+
+    padding:15px 20px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.chat-body{
+
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:15px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    background:#f5f7fb;
+}
+.user-message{
+
+    align-self:flex-end;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:10px 15px;
+
+    border-radius:18px 18px 4px 18px;
+
+    max-width:75%;
+
+    word-wrap:break-word;
+}
+
+.ai-message{
+
+    align-self:flex-start;
+
+    background:white;
+
+    color:#111827;
+
+    padding:10px 15px;
+
+    border-radius:18px 18px 18px 4px;
+
+    max-width:75%;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+    word-wrap:break-word;
+}
+.chat-footer{
+
+    display:flex;
+
+    padding:10px;
+
+    border-top:1px solid #eee;
+
+    background:white;
+}
+.chat-footer input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    padding:12px;
+
+    border-radius:30px;
+
+    background:#f3f4f6;
+}
+
+.dark-mode{
+    background:#0f172a !important;
+    color:#f8fafc !important;
+}
+
+.dark-mode .card{
+    background:#1e293b !important;
+    color:white !important;
+    border:none !important;
+}
+
+.dark-mode .navbar{
+    background:#1e293b !important;
+}
+
+.dark-mode .text-muted{
+    color:#cbd5e1 !important;
+}
+
+.dark-mode .premium-input{
+    background:#334155 !important;
+    color:white !important;
+    border:1px solid #475569 !important;
+}
+
+.dark-mode .premium-input::placeholder{
+    color:#94a3b8 !important;
+}
+
+.dark-mode .coach-report{
+    background:#334155 !important;
+    color:white !important;
+}
+
+.dark-mode .insight-card{
+    background:#3f2a1d !important;
+    color:white !important;
+}
+
+.dark-mode .progress{
+    background:#475569 !important;
+}
+
+.dark-mode .chat-body{
+    background:#1e293b !important;
+}
+
+.dark-mode .ai-message{
+    background:#334155 !important;
+    color:white !important;
+}
+
+.dark-mode .chat-footer{
+    background:#1e293b !important;
+}
+
+.dark-mode .chat-footer input{
+    background:#334155 !important;
+    color:white !important;
+}
+
+.dark-mode pre{
+    color:white !important;
+}
+
+.kpi-card{
+
+color:white;
+
+overflow:hidden;
+
+border:none;
+
+position:relative;
+
+box-shadow:
+0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.savings-card{
+background:linear-gradient(135deg,#10b981,#059669);
+}
+
+.expense-card{
+background:linear-gradient(135deg,#ef4444,#dc2626);
+}
+
+.income-card{
+background:linear-gradient(135deg,#3b82f6,#2563eb);
+}
+
+.kpi-card h2{
+font-weight:700;
+margin-top:10px;
+}
+
+.kpi-card i{
+opacity:.8;
+}
+
+#scoreChart{
+    max-width:220px;
+    margin:auto;
+}
+
+.badge{
+    padding:10px 15px;
+    border-radius:20px;
+    font-size:15px;
+    border-radius:20px;
+    padding:10px 18px;
+
+}
+
+.progress{
+height:25px;
+border-radius:20px;
+overflow:hidden;
+background:#e5e7eb;
+}
+
+.progress-bar{
+font-weight:600;
+}
+
+.ai-coach-card{
+
+border-radius:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+.ai-output{
+
+background:#f8fafc;
+
+padding:20px;
+
+border-radius:12px;
+
+white-space:pre-wrap;
+
+font-size:15px;
+
+line-height:1.7;
+
+max-height:300px;
+
+overflow-y:auto;
+
+}
+
+.btn-success{
+
+padding:12px 30px;
+
+font-weight:bold;
+
+border-radius:12px;
+
+transition:.3s;
+
+}
+
+.btn-success:hover{
+
+transform:translateY(-3px);
+
+}
+
+.coach-icon{
+width:60px;
+height:60px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:30px;
+
+background:#eff6ff;
+
+border-radius:50%;
+}
+
+.coach-report{
+background:#f8fafc;
+
+padding:20px;
+
+border-radius:15px;
+
+max-height:300px;
+
+overflow-y:auto;
+}
+
+.coach-report pre{
+white-space:pre-wrap;
+font-family:inherit;
+margin:0;
+}
+
+.insight-card{
+
+padding:20px;
+
+border-radius:15px;
+
+background:linear-gradient(
+135deg,
+#fff7ed,
+#ffedd5
+);
+
+border-left:5px solid #f97316;
+
+font-weight:500;
+
+height:100%;
+}
+
+.insight-card:hover{
+
+transform:translateY(-3px);
+
+transition:.3s;
+
+}
+
+.premium-input{
+
+height:50px;
+
+border-radius:12px;
+
+border:2px solid #e5e7eb;
+
+transition:.3s;
+
+}
+
+.premium-input:focus{
+
+border-color:#2563eb;
+
+box-shadow:
+0 0 15px rgba(37,99,235,.15);
+
+}
+
+.ai-output{
+
+white-space:pre-wrap;
+
+line-height:1.8;
+
+font-size:16px;
+
+background:#2f3f56;
+
+padding:20px;
+
+border-radius:15px;
+
+color:white;
+
+max-height:350px;
+
+overflow-y:auto;
+
+}
+
+.hero-card{
+
+background:linear-gradient(
+135deg,
+#1e3a8a,
+#2563eb
+);
+
+color:white;
+
+border:none;
+
+border-radius:20px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+
+}
+
+.hero-card p{
+
+color:#dbeafe;
+
+}
+
+.hero-card h4{
+
+font-weight:bold;
+
+}
+
+.executive-summary{
+
+background:linear-gradient(
+135deg,
+#0f172a,
+#1e3a8a
+);
+
+color:white;
+
+border-radius:20px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.2);
+
+}
+
+.executive-summary h6{
+
+color:#cbd5e1;
+
+font-size:14px;
+
+}
+
+.executive-summary h4{
+
+font-weight:700;
+
+margin-top:8px;
+
+}
+
+.btn-danger{
+
+border-radius:12px;
+
+padding:12px 28px;
+
+font-weight:bold;
+
+transition:.3s;
+
+}
+
+.btn-danger:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 8px 20px rgba(0,0,0,.2);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<div class="container mt-4">
+
+<div class="card border-0 shadow-sm p-3 mb-4">
+
+    <div class="d-flex justify-content-between align-items-center">
+
+       <div class="d-flex align-items-center">
+    <img
+        src="{{ url_for('static', filename='logo.png') }}"
+        alt="MoneyMind AI"
+        width="100"
+        class="me-3">
+
+    <div>
+        <h2 class="mb-0 fw-bold">
+            MoneyMind AI
+        </h2>
+
+        <small class="text-muted">
+            AI-powered Personal Finance & Wealth Assistant
+        </small>
+    </div>
+</div>
+
+        <div class="d-flex align-items-center gap-3">
+
+            <button class="btn btn-light position-relative">
+
+                <i class="fas fa-bell"></i>
+
+                <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                3
+                </span>
+
+            </button>
+
+            <button class="btn btn-dark" onclick="toggleDarkMode()">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <div class="text-end">
+
+    <div class="fw-bold">
+        {{ session['username'] }}
+    </div>
+
+    <small class="text-muted">
+        Financial Explorer
+    </small>
+
+</div>
+
+<a href="/logout" class="btn btn-outline-danger">
+    <i class="fas fa-sign-out-alt"></i>
+    Logout
+</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row g-4">
+
+<!-- FORM -->
+
+<div class="col-lg-3">
+
+<div class="card shadow-sm p-4">
+
+<h4 class="mb-4">
+💰 Financial Data
+</h4>
+
+<p class="text-muted mb-4">
+Enter your monthly financial details
+</p>
+
+<form method="POST">
+
+<label class="form-label fw-bold">
+📈 Monthly Income
+</label>
+
+<input
+type="number"
+name="income"
+class="form-control premium-input mb-3"
+placeholder="Enter Monthly Income"
+required>
+
+<label class="form-label fw-bold">
+🏠 Rent Expense
+</label>
+<input
+type="number"
+name="rent"
+class="form-control premium-input mb-3"
+placeholder="Enter Rent Expense"
+required>
+
+
+<label class="form-label fw-bold">
+🍽️ Food Expense
+</label>
+<input
+type="number"
+name="food"
+class="form-control premium-input mb-3"
+placeholder="Enter Food Expense"
+required>
+
+<label class="form-label fw-bold">
+🚗 Transport Expense
+</label>
+
+<input
+type="number"
+name="transport"
+class="form-control premium-input mb-3"
+placeholder="Enter Transport Expense"
+required>
+
+
+<label class="form-label fw-bold">
+🎬 Entertainment Expense
+</label>
+<input
+type="number"
+name="entertainment"
+class="form-control premium-input mb-3"
+placeholder="Enter Entertainment Expense"
+required>
+
+
+<button
+type="submit"
+class="btn btn-primary w-100 py-3">
+
+🚀 Analyze Finances
+
+</button>
+</form>
+
+</div>
+
+</div>
+
+<!-- MAIN DASHBOARD -->
+
+<div class="col-lg-9">
+
+<div class="row g-4">
+
+<div class="card p-4 mb-4 hero-card">
+
+<h2 class="fw-bold">
+👋 Welcome Back, {{ session['username'] }}
+</h2>
+
+<p class="text-muted">
+Your AI-powered personal finance dashboard
+</p>
+
+<div class="row mt-3">
+
+<div class="col-md-3">
+
+<h6>🟢 Health</h6>
+
+<h4>{{ status }}</h4>
+
+</div>
+
+<div class="col-md-3">
+
+<h6>💰 Savings</h6>
+
+<h4>
+
+₹{{ "{:,.0f}".format(savings) }}
+
+</h4>
+
+</div>
+
+<div class="col-md-3">
+
+<h6>📈 Savings Rate</h6>
+
+<h4>
+
+{{ savings_rate }}%
+
+</h4>
+
+</div>
+
+<div class="col-md-3">
+
+<h6>🎯 Goal Progress</h6>
+
+<h4>
+
+{{ goal_progress }}%
+
+</h4>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-12">
+
+<div class="card p-4 mb-4 executive-summary">
+
+<h3 class="mb-4">
+🤖 AI Executive Summary
+</h3>
+
+<div class="row text-center">
+
+<div class="col-md-2">
+
+<h6>💰 Income</h6>
+
+<h4>
+
+₹{{ "{:,.0f}".format(income|default(0)) }}
+
+</h4>
+
+</div>
+
+<div class="col-md-2">
+
+<h6>💸 Expenses</h6>
+
+<h4>
+
+₹{{ "{:,.0f}".format(rent+food+transport+entertainment) }}
+
+</h4>
+
+</div>
+
+<div class="col-md-2">
+
+<h6>💵 Savings</h6>
+
+<h4>
+
+₹{{ "{:,.0f}".format(savings) }}
+
+</h4>
+
+</div>
+
+<div class="col-md-2">
+
+<h6>📈 Rate</h6>
+
+<h4>
+
+{{ savings_rate }}%
+
+</h4>
+
+</div>
+
+<div class="col-md-2">
+
+<h6>🏆 Score</h6>
+
+<h4>
+
+{{ score }}/100
+
+</h4>
+
+</div>
+
+<div class="col-md-2">
+
+<h6>🎯 Status</h6>
+
+<h4>
+
+{{ status }}
+
+</h4>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- KPI CARDS -->
+
+<div class="col-md-4">
+
+<div class="card kpi-card savings-card p-4">
+
+    <div class="d-flex justify-content-between">
+
+        <div>
+            <small>Savings Rate</small>
+            <h2>{{ savings_rate }}%</h2>
+        </div>
+
+        <i class="fas fa-arrow-trend-up fa-2x"></i>
+
+    </div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card kpi-card expense-card p-4">
+
+    <div class="d-flex justify-content-between">
+
+        <div>
+            <small>Expense Ratio</small>
+            <h2>{{ expense_ratio }}%</h2>
+        </div>
+
+        <i class="fas fa-wallet fa-2x"></i>
+
+    </div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card kpi-card income-card p-4">
+
+    <div class="d-flex justify-content-between">
+
+        <div>
+            <small>Monthly Savings</small>
+            <h2>₹{{ savings }}</h2>
+        </div>
+
+        <i class="fas fa-piggy-bank fa-2x"></i>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- FINANCIAL ADVICE -->
+
+<div class="col-md-6">
+
+<div class="card p-4">
+
+<h4 class="mb-3">
+💰 Financial Advice
+</h4>
+
+<p class="text-muted mb-2">
+Monthly Savings
+</p>
+
+<h2 class="fw-bold text-success">
+₹{{ "{:,.0f}".format(savings) }}
+</h2>
+
+<hr>
+
+<p class="text-success fw-bold">
+{{ advice }}
+</p>
+
+<div class="mt-3">
+
+<span class="badge bg-success p-2">
+
+🟢 Financial Status : {{ status }}
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FINANCIAL SCORE -->
+
+<div class="col-md-6">
+
+<div class="card p-4">
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h5 class="mb-0">
+        🏆 Financial Health Score
+    </h5>
+
+    <span class="badge bg-success">
+        {{ status }}
+    </span>
+
+</div>
+
+<div style="width:220px; margin:auto;">
+    <canvas id="scoreChart"></canvas>
+</div>
+
+<h2 class="text-center mt-3">
+    {{ score }}/100
+</h2>
+
+<p class="text-center text-muted">
+    Your overall financial wellness score
+</p>
+
+</div>
+
+</div>
+
+<!-- SPENDING INSIGHTS -->
+
+<div class="col-md-12">
+
+<div class="card p-4">
+
+<h4 class="mb-4">
+📊 AI Spending Insights
+</h4>
+
+<div class="row">
+
+{% for item in insights %}
+
+<div class="col-md-4 mb-3">
+
+<div class="insight-card">
+
+{{ item }}
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+<!-- FINANCIAL GOAL TRACKER -->
+
+<div class="col-md-12">
+
+<div class="card p-4">
+
+<h4 class="mb-4">
+🎯 Financial Goals
+</h4>
+
+<div class="mb-4">
+
+<div class="d-flex justify-content-between">
+
+<span class="fw-bold">
+Emergency Fund
+</span>
+
+<span>
+₹{{ savings }} / ₹{{ goal_target }}
+</span>
+
+</div>
+
+<div class="progress mt-2">
+
+<div
+class="progress-bar bg-success"
+style="width:{{ goal_progress }}%;">
+
+{{ goal_progress }}%
+
+</div>
+
+</div>
+
+</div>
+
+<div class="mb-4">
+
+<div class="d-flex justify-content-between">
+
+<span class="fw-bold">
+Laptop Fund
+</span>
+
+<span>
+₹15000 / ₹60000
+</span>
+
+</div>
+
+<div class="progress mt-2">
+
+<div
+class="progress-bar bg-primary"
+style="width:25%;">
+
+25%
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<div class="d-flex justify-content-between">
+
+<span class="fw-bold">
+Travel Fund
+</span>
+
+<span>
+₹8000 / ₹80000
+</span>
+
+</div>
+
+<div class="progress mt-2">
+
+<div
+class="progress-bar bg-warning"
+style="width:10%;">
+
+10%
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- AI REPORT -->
+
+<div class="col-md-12">
+
+<div class="card p-4 ai-coach-card shadow-lg">
+
+<div class="d-flex align-items-center mb-3">
+
+<div class="coach-icon">
+🤖
+</div>
+
+<div class="ms-3">
+
+<h4 class="mb-0">
+AI Financial Coach
+</h4>
+
+<small class="text-muted">
+Personalized financial insights
+</small>
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="coach-report">
+
+<div class="ai-output">
+
+{{ ai_report }}
+
+</div>
+
+</div>
+
+<div class="text-center mt-4">
+
+<a
+href="/download_report"
+class="btn btn-success btn-lg">
+
+📄 Download Professional Report
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-12">
+
+<div class="card p-4">
+
+<h3>
+
+📊 AI Budget Planner
+
+</h3>
+
+<div class="row text-center">
+
+<div class="col-md-4">
+
+<h5>
+
+🏠 Needs
+
+</h5>
+
+<h2>
+
+₹{{ "{:,.0f}".format(needs) }}
+
+</h2>
+
+</div>
+
+<div class="col-md-4">
+
+<h5>
+
+🎉 Wants
+
+</h5>
+
+<h2>
+
+₹{{ "{:,.0f}".format(wants) }}
+
+</h2>
+
+</div>
+
+<div class="col-md-4">
+
+<h5>
+
+💰 Savings
+
+</h5>
+
+<h2>
+
+₹{{ "{:,.0f}".format(recommended_savings) }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-12">
+
+<div class="card p-4 mt-4">
+
+<h3>
+
+💹 AI Investment Planner
+
+</h3>
+
+<div class="row text-center">
+
+<div class="col-md-3">
+
+<h5>
+
+🚑 Emergency Fund
+
+</h5>
+
+<h3>
+
+₹{{ "{:,.0f}".format(cash) }}
+
+</h3>
+
+</div>
+
+<div class="col-md-3">
+
+<h5>
+
+📈 SIP
+
+</h5>
+
+<h3>
+
+₹{{ "{:,.0f}".format(sip) }}
+
+</h3>
+
+</div>
+
+<div class="col-md-3">
+
+<h5>
+
+🥇 Gold
+
+</h5>
+
+<h3>
+
+₹{{ "{:,.0f}".format(gold) }}
+
+</h3>
+
+</div>
+
+<div class="col-md-3">
+
+<h5>
+
+💵 Reserve
+
+</h5>
+
+<h3>
+
+₹{{ "{:,.0f}".format(cash) }}
+
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-12">
+
+<div class="card p-4 mt-4">
+
+<h3 class="mb-3">
+📈 Financial History
+</h3>
+
+<table class="table table-striped">
+
+<thead>
+
+<tr>
+
+
+<th>Income</th>
+
+<th>Expenses</th>
+
+<th>Savings</th>
+
+<th>Score</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for row in history %}
+
+<tr>
+
+<td>₹{{ "{:,.0f}".format(row[1]) }}</td>
+
+<td>₹{{ "{:,.0f}".format(row[2]) }}</td>
+
+<td>₹{{ "{:,.0f}".format(row[3]) }}</td>
+
+<td>{{ row[4] }}/100</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- CHARTS -->
+
+<div class="col-md-6">
+
+<div class="card shadow-sm p-3">
+
+<h6 class="mb-3">Financial Overview</h6>
+
+<canvas id="financeChart"></canvas>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card shadow-sm p-3">
+
+<h6 class="mb-3">Expense Distribution</h6>
+
+<canvas id="expenseChart"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- CHATBOT -->
+
+<div id="chatbotButton" onclick="toggleChatbot()">
+    <i class="fas fa-robot"></i>
+</div>
+
+<div id="chatbotWindow">
+
+<div class="chat-header">
+
+    <div>
+        <div style="font-weight:600;">
+            🤖 AI Financial Coach
+        </div>
+
+        <div style="
+            font-size:12px;
+            color:#d1fae5;
+            margin-top:2px;">
+            🟢 Online
+        </div>
+    </div>
+
+    <span
+        onclick="toggleChatbot()"
+        style="cursor:pointer;font-size:20px;">
+        ✖
+    </span>
+
+</div>
+<div class="chat-body" id="chatMessages">
+
+<div class="ai-message">
+
+👋 Welcome back!
+
+I'm your AI Financial Coach.
+
+I can help with:
+
+• Budget Planning
+
+• Savings Strategy
+
+• Investments
+
+• Expense Reduction
+
+• Financial Goals
+
+</div>
+
+</div>
+
+<div class="chat-footer">
+
+    <input
+    type="text"
+    id="userMessage"
+    placeholder="Type your message...">
+
+    <button onclick="sendMessage()">
+        <i class="fas fa-paper-plane"></i>
+    </button>
+
+</div>
+</div>
+
+<script>
+
+/* DARK MODE */
+
+function toggleDarkMode(){
+
+console.log("Dark Mode Clicked");
+
+document.body.classList.toggle("dark-mode");
+
+if(document.body.classList.contains("dark-mode")){
+localStorage.setItem("theme","dark");
+}else{
+localStorage.setItem("theme","light");
+}
+
+}
+
+window.onload=function(){
+if(localStorage.getItem("theme")==="dark"){
+document.body.classList.add("dark-mode");
+}
+}
+
+/* DATA */
+
+var income={{ income|default(0) }};
+var savings={{ savings }};
+var rent={{ rent|default(0) }};
+var food={{ food|default(0) }};
+var transport={{ transport|default(0) }};
+var entertainment={{ entertainment|default(0) }};
+
+var expenses=rent+food+transport+entertainment;
+
+/* BAR CHART */
+
+new Chart(document.getElementById('financeChart'),{
+type:'bar',
+data:{
+labels:['Income','Expenses','Savings'],
+datasets:[{
+data:[income,expenses,savings],
+backgroundColor:['#3b82f6','#ef4444','#22c55e']
+}]
+}
+});
+
+/* PIE CHART */
+
+new Chart(document.getElementById('expenseChart'),{
+type:'pie',
+data:{
+labels:['Rent','Food','Transport','Entertainment'],
+datasets:[{
+data:[rent,food,transport,entertainment],
+backgroundColor:['#4CAF50','#FF9800','#2196F3','#E91E63']
+}]
+}
+});
+
+/* SCORE GAUGE */
+
+var score = {{ score }};
+
+new Chart(document.getElementById("scoreChart"),{
+type:"doughnut",
+data:{
+datasets:[{
+data:[score,100-score],
+backgroundColor:[
+"#10b981",
+"#e2e8f0"
+],
+borderWidth:0
+}]
+},
+options:{
+cutout:"75%",
+plugins:{legend:{display:false}}
+}
+});
+
+/* CHATBOT */
+
+function toggleChatbot(){
+
+let chat=document.getElementById("chatbotWindow");
+
+chat.style.display=(chat.style.display==="flex")?"none":"flex";
+
+}
+
+function sendMessage(){
+
+let message=document.getElementById("userMessage").value;
+if(message.trim()==="") return;
+
+let chatBox=document.getElementById("chatMessages");
+
+chatBox.innerHTML+=`<div class='user-message'>${message}</div>`;
+chatBox.scrollTop = chatBox.scrollHeight;
+
+fetch("/chat",{
+method:"POST",
+headers:{"Content-Type":"application/x-www-form-urlencoded"},
+body:"message="+message
+})
+.then(res=>res.json())
+.then(data=>{
+chatBox.innerHTML+=`<div class='ai-message'>${data.reply}</div>`;
+chatBox.scrollTop=chatBox.scrollHeight;
+});
+
+document.getElementById("userMessage").value="";
+
+}
+document
+.getElementById("userMessage")
+.addEventListener("keypress", function(e){
+
+    if(e.key==="Enter"){
+        sendMessage();
+    }
+
+});
+
+/* PARTICLES */
+
+particlesJS("particles-js",{
+particles:{
+number:{value:70},
+color:{value:"#3b82f6"},
+size:{value:3},
+line_linked:{enable:true,distance:140,color:"#3b82f6",opacity:0.3},
+move:{enable:true,speed:1.2}
+}
+});
+
+</script>
+
+</body>
+</html>
