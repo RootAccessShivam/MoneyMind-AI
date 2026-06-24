@@ -162,6 +162,7 @@ Cloud Computing Enthusiast | Full Stack Learner
 
 ⭐ If you like this project, give it a star.
 
+
 ## 📸 Project Screenshots
 
 ### Dashboard
@@ -173,9 +174,8 @@ Cloud Computing Enthusiast | Full Stack Learner
 ![Login page with email and password fields for secure access](screenshots/login.png)
 
 ### PDF Report
-
-![Financial report preview showing report ID, summary table, recommendations, and investment plan](screenshots/pdf report.png)
+![PDF Report](screenshots/pdf%20report.png)
 
 ### Registration Page
 
-![Registration page with sign up fields for name, email, and password](screenshots/register.png)
+![Register](screenshots/register.png)
