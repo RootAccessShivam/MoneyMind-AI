@@ -106,10 +106,6 @@ MoneyMind-AI/
 
 │ ├── logo.png
 
-│ ├── style.css
-
-│ └── scripts.js
-
 ├── templates/
 
 │ ├── login.html
