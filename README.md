@@ -1,36 +1,185 @@
-# AI Financial Advisor Web Application
+<p align="center">
+  <img src="logo.png" width="180">
+</p>
 
-A web-based AI Financial Advisor built using Flask that helps users analyze their income, expenses, and savings.
+<h1 align="center"> MoneyMind AI</h1>
 
-## Features
-- Income and expense tracking
-- Savings calculation and financial advice
-- Expense category visualization (Pie Chart)
-- Financial overview dashboard (Bar Chart)
-- AI chatbot for financial questions
-- User login system
+<p align="center">
+AI-powered Personal Finance & Wealth Assistant
+</p>
 
-## Technologies Used
-- Python
-- Flask
-- HTML / CSS
-- JavaScript
-- Chart.js
 
-## Installation
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black)
+![SQLite](https://img.shields.io/badge/Database-SQLite-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-Clone the repository:
+### AI-powered Personal Finance & Wealth Assistant
 
-git clone https://github.com/RootAccessShivam/Repository-name-ai-financial-advisor-.git
+MoneyMind AI is an intelligent financial planning web application that helps users analyze income, expenses, savings, and financial health through AI-driven insights and personalized recommendations.
 
-Install dependencies:
+---
+
+## 🚀 Features
+
+### 🔐 Authentication System
+
+* User Registration
+* Secure Login
+* Password Hashing
+* Session Management
+* Multi-user Support
+
+### 💰 Financial Analysis
+
+* Income & Expense Tracking
+* Savings Calculation
+* Financial Health Score
+* Expense Distribution Analysis
+* Financial History Tracking
+
+### 🤖 AI Insights
+
+* Personalized Financial Advice
+* AI-generated Recommendations
+* Risk Analysis
+* Investment Suggestions
+
+### 📊 Investment Planner
+
+* SIP Planning
+* Emergency Fund Allocation
+* Gold Investment Suggestions
+* Savings Recommendations
+
+### 📄 PDF Report Generator
+
+* Professional Financial Reports
+* Downloadable PDF Summary
+* Investment Plan Included
+* AI Recommendations Included
+
+### 📈 Data Visualization
+
+* Interactive Charts
+* Expense Breakdown
+* Financial Overview Dashboard
+* Goal Progress Tracking
+
+---
+
+## 🛠 Tech Stack
+
+### Backend
+
+* Flask
+* Python
+* SQLite
+
+### Frontend
+
+* HTML5
+* CSS3
+* Bootstrap 5
+* JavaScript
+
+### AI Integration
+
+* Groq API
+* Llama Models
+
+### Reporting
+
+* ReportLab PDF Generator
+
+---
+
+## 📂 Project Structure
+
+MoneyMind-AI/
+
+├── app.py
+
+├── .gitignore
+
+├── static/
+
+│ ├── logo.png
+
+│ ├── style.css
+
+│ └── scripts.js
+
+├── templates/
+
+│ ├── login.html
+
+│ ├── register.html
+
+│ └── index.html
+
+└── README.md
+
+---
+
+## ⚡ Installation
+
+1. Clone the repository
+
+git clone YOUR_REPOSITORY_LINK
+
+2. Install dependencies
 
 pip install -r requirements.txt
 
-Run the application:
+3. Create .env file
+
+GROQ_API_KEY=your_api_key_here
+
+4. Run the application
 
 python app.py
 
-Open in browser:
+---
 
-http://127.0.0.1:5000
+## 🎯 Future Enhancements
+
+* Admin Dashboard
+* Email Verification
+* Password Reset
+* Financial Goal Tracking
+* Cloud Database Integration
+* Deployment on Render/Railway
+* Mobile Responsive Design Improvements
+
+---
+
+## 👨‍💻 Developer
+
+Shivam Yadav
+
+B.Tech Computer Science
+
+Cloud Computing Enthusiast | Full Stack Learner
+
+---
+
+⭐ If you like this project, give it a star.
+
+## 📸 Project Screenshots
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### Login Page
+
+![Login](screenshots/login.png)
+
+### PDF Report
+
+![PDF Report](screenshots/pdf-report.png)
+
+### Registration Page
+
+![Register](screenshots/register.png)
