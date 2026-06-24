@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.png" width="180">
+  <img src="logo.png" width="180" alt="MoneyMind AI logo with blue fingerprint icon and brand name">
 </p>
 
 <h1 align="center"> MoneyMind AI</h1>
@@ -166,16 +166,16 @@ Cloud Computing Enthusiast | Full Stack Learner
 
 ### Dashboard
 
-![Dashboard](screenshots/dashboard.png)
+![Dashboard view of the financial summary and charts on the MoneyMind AI dashboard](screenshots/dashboard.png)
 
 ### Login Page
 
-![Login](screenshots/login.png)
+![Login page with email and password fields for secure access](screenshots/login.png)
 
 ### PDF Report
 
-![PDF Report](screenshots/pdf report.png)
+![Financial report preview showing report ID, summary table, recommendations, and investment plan](screenshots/pdf report.png)
 
 ### Registration Page
 
-![Register](screenshots/register.png)
+![Registration page with sign up fields for name, email, and password](screenshots/register.png)
