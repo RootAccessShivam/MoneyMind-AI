@@ -177,5 +177,4 @@ Cloud Computing Enthusiast | Full Stack Learner
 ![PDF Report](screenshots/pdf%20report.png)
 
 ### Registration Page
-
-![Register](screenshots/register.png)
+![Register](screenshots/Register.png)
